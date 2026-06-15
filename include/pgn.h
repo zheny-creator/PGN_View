@@ -5,13 +5,30 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-void parse_name() {
+void parse_name(char *buffer, char *name_1[], char *name_2[]) {
+    const char *line = buffer;
+    while (*line)
+    {
+       if (strncmp(line, "[Black ", 7) == 0)
+        {
+            sscanf(line,"[Black \"%63[^\"]\"]",name_1);
+        }
+        else if (strncmp(line, "[White ", 7) == 0)
+        {
+            sscanf(line,"[White \"%63[^\"]\"]",name_2);
+        }
 
+        while (*line && *line != '\n')
+            line++;
+
+        if (*line == '\n')
+            line++;
+    }
+    
 }
-
-void parse_date() {
-
-}
+    void parse_date()
+    {
+    }
 
 void parse_players() {
 
